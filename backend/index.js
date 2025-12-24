@@ -8,16 +8,15 @@ import workSpaceRouter from "./routes/workspace.routes.js"
 import taskRouter from "./routes/task.routes.js"
 dotenv.config()
 
-const port=process.env.PORT
+const port=process.env.PORT || 5000
 const app=express()
-
-app.use(express.json())
-app.use(cookieParser())
 app.use(cors({
     origin:"https://planora-frontend-site.onrender.com",
     credentials:true
-
 }))
+app.use(express.json())
+app.use(cookieParser())
+
 app.use("/api",authRouter)
 app.use("/api",workSpaceRouter)
 app.use("/api",taskRouter)
