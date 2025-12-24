@@ -10,10 +10,12 @@ dotenv.config()
 
 const port=process.env.PORT || 5000
 const app=express()
+app.set("trust proxy", 1)
 app.use(cors({
     origin:"https://planora-frontend-site.onrender.com",
     credentials:true
 }))
+
 app.use(express.json())
 app.use(cookieParser())
 
