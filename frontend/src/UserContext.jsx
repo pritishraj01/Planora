@@ -5,7 +5,7 @@ import { useNavigate } from 'react-router-dom'
 export const dataContext = createContext()
 function UserContext({ children }) {
   let [userData, setUserData] = useState(null)
-  let backendUrl = "http://localhost:8000"
+  let backendUrl = "https://planora-backend-web.onrender.com"
   let navigate= useNavigate()
 
   const getUserData = async () => {
