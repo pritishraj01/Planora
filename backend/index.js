@@ -1,0 +1,28 @@
+import express from "express"
+import dotenv from "dotenv"
+import connectDB from "./config/db.js"
+import authRouter from "./routes/auth.routes.js"
+import cookieParser from "cookie-parser"
+import cors from "cors"
+import workSpaceRouter from "./routes/workspace.routes.js"
+import taskRouter from "./routes/task.routes.js"
+dotenv.config()
+
+const port=process.env.PORT
+const app=express()
+
+app.use(express.json())
+app.use(cookieParser())
+app.use(cors({
+    origin:"http://localhost:5173",
+    credentials:true
+
+}))
+app.use("/api",authRouter)
+app.use("/api",workSpaceRouter)
+app.use("/api",taskRouter)
+
+app.listen(port,()=>{
+    connectDB()
+    console.log(`server is started at ${port}`)
+})
